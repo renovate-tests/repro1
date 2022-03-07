@@ -27,17 +27,17 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@a12a3943b4bdde767164f792f33f40b04645d846 # tag=v3.0.0
+      - uses: actions/checkout
 
       - name: Check if version has been updated
         id: check
-        uses: EndBug/version-check@2512d2ac9130c439e045344eb6603a81f4b0f915 # tag=v2
+        uses: EndBug/version-check
 
         with:
           diff-search: true
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: actions/setup-node@9ced9a43a244f3ac94f13bfd896db8c8f30da67a # tag=v3.0.0
+      - uses: actions/setup-node
         if: steps.check.outputs.changed == 'true'
         with:
           scope: '@renovatebot'
@@ -60,7 +60,7 @@ jobs:
 
       - name: Setup Node.js for GPR
         if: steps.check.outputs.changed == 'true'
-        uses: actions/setup-node@9ced9a43a244f3ac94f13bfd896db8c8f30da67a # tag=v3.0.0
+        uses: actions/setup-node
         with:
           scope: '@renovatebot'
           registry-url: 'https://npm.pkg.github.com/'
